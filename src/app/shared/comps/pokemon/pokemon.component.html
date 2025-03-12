@@ -1,0 +1,61 @@
+<div class=" w-full h-full border  flex flex-col overflow-auto">
+
+  <span class=" w-full inline-block p-2 text-5xl">
+    <strong>{{pokemon().name | titlecase}}</strong>
+  </span>
+
+  <p-divider class="m-0 p-0"/>
+
+  <section class=" w-full inline-block p-2" >
+    <strong>Types</strong>
+    <div>
+      @for (type of pokemon().physicalAttributes.types; track $index) {
+        <p-tag [value]="type" class="m-1" />
+      }
+    </div>
+  </section>
+
+  <p-divider class="m-0 p-0"/>
+
+  <section class=" w-full inline-block p-2" >
+    <strong>Description</strong>
+    <p class="p-2">
+      {{pokemon().description}}
+    </p>
+  </section>
+
+
+  <p-divider class="m-0 p-0"/>
+  <section class="p-2">
+    <strong class="text-2xl">Stats</strong>
+    <div class="grid grid-cols-3 grid-rows-1">
+      <span>Name</span>
+      <span>BaseStat</span>
+      <span>Effort</span>
+    </div>
+    <p-divider class="m-0 p-0"/>
+    @for (stat of pokemon().stats; track $index) {
+      <div class="grid grid-cols-3 grid-rows-1">
+        <span>{{stat.name}}</span>
+        <span>{{stat.baseStat}}</span>
+        <span>{{stat.effort}}</span>
+      </div>
+    }
+  </section>
+
+  <div class="p-2">
+    <strong>Ability</strong>
+    <div class="grid grid-cols-3 grid-rows-1">
+      <span></span>
+      <span>Hidden</span>
+      <span [class]="'cursor-auto  pi ' + ( showHiddenAbility ? ' pi-eye' : ' pi-eye-slash ') "  (click)="showHiddenAbility = !showHiddenAbility" [pTooltip]="showHiddenAbility ? ' hide ' : ' show hidden '"></span>
+    </div>
+    <p-divider class="m-0 p-0"/>
+    @for (stat of pokemon().abilities; track $index) {
+      <div *ngIf=" showHiddenAbility || stat.isHidden == false" class="grid grid-cols-3 grid-rows-1">
+        <span>{{stat.name}}</span>
+        <span>{{stat.isHidden}}</span>
+      </div>
+    }
+  </div>
+</div>

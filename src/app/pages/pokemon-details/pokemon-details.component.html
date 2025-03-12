@@ -1,0 +1,6 @@
+<main class="w-full h-full  flex flex-col items-center justify-center">
+  <section class="container mx-auto h-4/5 items-center justify-center  lg:grid lg:grid-cols-2 md:grid md:grid-cols-2 gap-3 p-2 ">
+    <app-img-view [src]="pokemon?.physicalAttributes?.appearance" />
+    <app-pokemon *ngIf="pokemon" [pokemon]="pokemon" class="bg-white shadow-2xl "/>
+  </section>
+</main>

@@ -1,0 +1,77 @@
+<main class="w-full h-full flex flex-col bg-gray-100">
+  <section class="h-20 mb-3 ">
+
+    <div class="container mx-auto h-full flex justify-center items-center">
+
+        <p-ifta-label>
+          <input pInputText [formControl]="searchControl"  autocomplete="off" />
+          <label >Serch</label>
+        </p-ifta-label>
+    </div>
+  </section>
+
+  <section class="h-full w-full overflow-auto ">
+    <div *ngIf="pokemonListFiltered?.length > 0" [class]="' container p-4  h-full w-full mx-auto ' + ( showList ? '' : 'grid grid-cols-5 gap-3' )">
+      @for (pokemon of pokemonListFiltered; track $index) {
+        @if (showList) {
+          <ng-container *ngTemplateOutlet="listViewTemplate; context: { pokemon }"/>
+        } @else {
+          <ng-container *ngTemplateOutlet="gridViewTemplate; context: { pokemon }"/>
+        }
+      }
+    </div>
+
+    <div *ngIf="!pokemonListFiltered" class="h-full w-full flex justify-center items-center">
+      <span class="pi pi-spinner pi-spin spinner-size"></span>
+    </div>
+  </section>
+  <section class="h-20 mb-3 ">
+
+    <div class="container mx-auto h-full">
+      <p-divider></p-divider>
+
+      <div class=" px-28 h-full mx-auto flex justify-between items-center" >
+
+        <div class="flex flex-col justify-center items-center">
+          <span>View Type</span>
+          <p-button [icon]="(showList ? 'pi pi-table' : 'pi pi-list')" (click)="showList = !showList"/>
+        </div>
+
+        <p-ifta-label>
+          <p-select  [options]="pageNoOptions" [formControl]="pageNoSelectionControl" placeholder="Show per page" class="w-25" />
+          <label >Show per page</label>
+        </p-ifta-label>
+        <p-ifta-label>
+          <input class="w-25" type="number" pInputText [formControl]="pageNoControl" [max]="maxPage" autocomplete="off" />
+          <label >Page</label>
+        </p-ifta-label>
+
+        <div class="flex flex-col justify-center items-center">
+          <span>Refresh</span>
+          <p-button icon="pi pi-refresh" (click)="refresh()"/>
+        </div>
+      </div>
+    </div>
+  </section>
+</main>
+
+<ng-template #gridViewTemplate let-pokemon="pokemon">
+  <div class="   bg-white pb-4 shadow-2xl rounded-2xl flex flex-col justify-between">
+    {{pokemon.id}}
+
+    <app-img-view [src]="pokemon.avatar" class="w-full block p-2 "/>
+
+    <div class="h-10 flex flex-col items-center justify-center">
+          <p-divider></p-divider>
+          <span class="text-3xl block mt-3"  [routerLink]="'/pokemon-details/' + pokemon.name"> {{ pokemon.name | titlecase }}  </span>
+    </div>
+  </div>
+</ng-template>
+
+<ng-template #listViewTemplate let-pokemon="pokemon">
+  <div class="h-20 bg-white mb-3 shadow-md rounded-md p-2 flex  justify-between  ">
+    {{pokemon.id}}
+    <span class="text-3xl py-2.5"  [routerLink]="'/pokemon-details/' + pokemon.name">{{ pokemon.name | titlecase }}</span>
+    <app-img-view [src]="pokemon.avatar" class="w-25 block "/>
+  </div>
+</ng-template>
