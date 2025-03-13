@@ -40,7 +40,7 @@
           <label >Show per page</label>
         </p-ifta-label>
         <p-ifta-label>
-          <input class="w-25" type="number" pInputText [formControl]="pageNoControl" [max]="maxPage" autocomplete="off" />
+          <input class="w-25" type="number" pInputText [formControl]="pageNoControl" min="1" [max]="maxPage" autocomplete="off" />
           <label >Page</label>
         </p-ifta-label>
 

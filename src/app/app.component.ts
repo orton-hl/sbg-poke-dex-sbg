@@ -22,9 +22,8 @@ export class AppComponent implements OnInit, OnDestroy {
         if (event.url.includes('pokemon-details')) {
           const urlSegments = event.url.split("/")
           this.pokemonName = urlSegments[urlSegments.length - 1];
-        } else {
-          this.pokemonName = undefined
         }
+        else this.pokemonName = undefined
       }
     });
   }

@@ -1,15 +1,15 @@
-import {AfterViewInit, ChangeDetectorRef, Component, inject, OnDestroy, OnInit} from '@angular/core';
+import {AfterViewInit, Component, inject, OnDestroy} from '@angular/core';
 import {PokemonComponent} from '../../shared/comps/pokemon/pokemon.component';
 import {Subscription} from 'rxjs';
-import {ActivatedRoute, NavigationEnd, NavigationError, NavigationStart, Router} from '@angular/router';
+import {ActivatedRoute} from '@angular/router';
 import {PokedexService} from '../../shared/service/pokedex.service';
 import {Pokemon} from '../../shared/models/data';
-import {JsonPipe, NgIf} from '@angular/common';
+import {NgIf} from '@angular/common';
 import {ImgViewComponent} from '../../shared/comps/img-view/img-view.component';
 
 @Component({
   selector: 'app-pokemon-details',
-  imports: [ImgViewComponent, JsonPipe, NgIf, PokemonComponent],
+  imports: [ImgViewComponent, NgIf, PokemonComponent],
   templateUrl: './pokemon-details.component.html',
   styleUrl: './pokemon-details.component.scss'
 })
@@ -39,6 +39,4 @@ export class PokemonDetailsComponent implements AfterViewInit, OnDestroy {
       })
     );
   }
-
-
 }
