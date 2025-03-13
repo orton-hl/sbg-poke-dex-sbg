@@ -1,4 +1,4 @@
-import {Component, input} from '@angular/core';
+import {Component, Input, input} from '@angular/core';
 import {JsonPipe, NgIf, TitleCasePipe} from '@angular/common';
 import {Pokemon} from '../../models/data';
 import {Tag} from 'primeng/tag';
@@ -22,6 +22,6 @@ import {ImgViewComponent} from '../img-view/img-view.component';
 export class PokemonComponent {
 
   showHiddenAbility = false;
-  pokemon = input<Pokemon | undefined>(undefined);
+  @Input() pokemon : Pokemon | undefined;
 
 }

@@ -24,10 +24,10 @@ export class PokedexService {
       params = params.set('pageNo', options.pageNo);
     }
 
-    return this.httpClient.get<GetAllResponse>(`${environment.pokeDexBaseApiUrl}/pokedex`, { params } );
+    return this.httpClient.get<GetAllResponse>(`${environment.pokeDexBaseApiUrl}`, { params } );
   }
 
   getPokemonDetails(name: string) : Observable<Pokemon> {
-    return this.httpClient.get<Pokemon>(`${environment.pokeDexBaseApiUrl}/pokedex/${name}`)
+    return this.httpClient.get<Pokemon>(`${environment.pokeDexBaseApiUrl}/${name}`)
   }
 }

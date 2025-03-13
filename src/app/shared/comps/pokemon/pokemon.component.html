@@ -20,7 +20,7 @@
   <section class=" w-full inline-block p-2" >
     <strong>Description</strong>
     <p class="p-2">
-      {{pokemon().description}}
+      {{pokemon?.description}}
     </p>
   </section>
 
@@ -34,7 +34,7 @@
       <span>Effort</span>
     </div>
     <p-divider class="m-0 p-0"/>
-    @for (stat of pokemon().stats; track $index) {
+    @for (stat of pokemon?.stats; track $index) {
       <div class="grid grid-cols-3 grid-rows-1">
         <span>{{stat.name}}</span>
         <span>{{stat.baseStat}}</span>
@@ -51,7 +51,7 @@
       <span [class]="'cursor-auto  pi ' + ( showHiddenAbility ? ' pi-eye' : ' pi-eye-slash ') "  (click)="showHiddenAbility = !showHiddenAbility" [pTooltip]="showHiddenAbility ? ' hide ' : ' show hidden '"></span>
     </div>
     <p-divider class="m-0 p-0"/>
-    @for (stat of pokemon().abilities; track $index) {
+    @for (stat of pokemon?.abilities; track $index) {
       <div *ngIf=" showHiddenAbility || stat.isHidden == false" class="grid grid-cols-3 grid-rows-1">
         <span>{{stat.name}}</span>
         <span>{{stat.isHidden}}</span>
