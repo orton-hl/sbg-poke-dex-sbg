@@ -17,7 +17,6 @@ jobs:
       - run: echo '${{ secrets.PRD_ENV_F }}' > src/environments/environment.production.ts
 
       - run: npm ci --legacy-peer-deps && npm run build
-      - run: y
       - uses: FirebaseExtended/action-hosting-deploy@v0
         with:
           repoToken: ${{ secrets.GITHUB_TOKEN }}
