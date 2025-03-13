@@ -11,7 +11,12 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v4
-      - run: echo ${{ secrets.PRD_ENV_F }} > src/environments/environment.production.ts
+
+      - name: Create prod env file
+      - run: |
+              echo '${{ secrets.PRD_ENV_F }}' > src/environments/environment.production.ts
+
+      - name: install deps
       - run: npm ci --legacy-peer-deps && npm run build
       - run: y
       - uses: FirebaseExtended/action-hosting-deploy@v0
