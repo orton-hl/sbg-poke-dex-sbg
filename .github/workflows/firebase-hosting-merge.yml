@@ -12,7 +12,7 @@ jobs:
     steps:
       - uses: actions/checkout@v4
 
-      - run: echo ${{ secrets.PRD_ENV_F }} > ./src/environments/environment.pr4.ts
+      - run: echo '${{ secrets.PRD_ENV_F }}' > ./src/environments/environment.pr4.ts
 
       - run: npm ci --legacy-peer-deps && npm run build
       - run: y
