@@ -1,13 +1,12 @@
 import {Component, inject, OnDestroy, OnInit} from '@angular/core';
 import {ButtonModule} from 'primeng/button';
-import {NavigationEnd, Router, RouterLink, RouterOutlet} from '@angular/router';
+import {NavigationEnd, Router} from '@angular/router';
 import {ReactiveFormsModule} from '@angular/forms';
 import {Subscription} from 'rxjs';
-import {NgIf} from '@angular/common';
 
 @Component({
   selector: 'app-root',
-  imports: [ButtonModule, RouterOutlet, ReactiveFormsModule, RouterLink, NgIf],
+  imports: [ButtonModule, ReactiveFormsModule],
   templateUrl: './app.component.html',
   styleUrl: './app.component.scss',
 })
