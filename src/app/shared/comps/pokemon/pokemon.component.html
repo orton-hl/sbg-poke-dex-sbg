@@ -1,7 +1,7 @@
 <div class=" w-full h-full border  flex flex-col overflow-auto">
 
   <span class=" w-full inline-block p-2 text-5xl">
-    <strong>{{pokemon().name | titlecase}}</strong>
+    <strong>{{pokemon.name | titlecase}}</strong>
   </span>
 
   <p-divider class="m-0 p-0"/>
@@ -9,7 +9,7 @@
   <section class=" w-full inline-block p-2" >
     <strong>Types</strong>
     <div>
-      @for (type of pokemon().physicalAttributes.types; track $index) {
+      @for (type of pokemon.physicalAttributes.types; track $index) {
         <p-tag [value]="type" class="m-1" />
       }
     </div>
