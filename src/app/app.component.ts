@@ -3,12 +3,11 @@ import {ButtonModule} from 'primeng/button';
 import {NavigationEnd, Router, RouterLink, RouterOutlet} from '@angular/router';
 import {ReactiveFormsModule} from '@angular/forms';
 import {Subscription} from 'rxjs';
-import {environment} from '../environments/environment';
-import {JsonPipe} from '@angular/common';
+import {NgIf} from '@angular/common';
 
 @Component({
   selector: 'app-root',
-  imports: [ButtonModule, RouterOutlet, ReactiveFormsModule, RouterLink, JsonPipe],
+  imports: [ButtonModule, RouterOutlet, ReactiveFormsModule, RouterLink, NgIf],
   templateUrl: './app.component.html',
   styleUrl: './app.component.scss',
 })
@@ -32,6 +31,4 @@ export class AppComponent implements OnInit, OnDestroy {
   ngOnDestroy(): void {
     this.routerSub$?.unsubscribe();
   }
-
-  protected readonly environment = environment;
 }
