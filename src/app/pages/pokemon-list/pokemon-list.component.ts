@@ -12,7 +12,7 @@ import {PokemonEntry} from '../../shared/models/data';
 import {Router, RouterLink} from '@angular/router';
 import {Button} from 'primeng/button';
 
-const PAGE_NO_OPTIONS = [10, 20, 30, 40, 50];
+const PAGE_NO_OPTIONS = [50, 75, 100, 150];
 
 @Component({
   selector: 'app-pokemon-list',
@@ -39,7 +39,7 @@ const PAGE_NO_OPTIONS = [10, 20, 30, 40, 50];
 export class PokemonListComponent implements OnInit, OnDestroy {
   showList = false;
   showErrorScreen = false;
-  pageNoSelectionControl = new FormControl(PAGE_NO_OPTIONS[0]);
+  pageNoSelectionControl = new FormControl(100);
   searchControl = new FormControl(undefined);
   pageNoControl = new FormControl(1);
   pageNoOptions = PAGE_NO_OPTIONS;
@@ -58,7 +58,10 @@ export class PokemonListComponent implements OnInit, OnDestroy {
   }
 
   ngOnInit(): void {
-    this.loadPokemon();
+    this.loadPokemon({
+      pageNo: this.pageNoControl.value,
+      pageSize: this.pageNoSelectionControl.value,
+    });
     this.subs.add(this.pageNoSelectionControl.valueChanges.subscribe( value => this.handlePageNoSelectionControl(value)));
     this.subs.add(this.searchControl.valueChanges.subscribe(value => this.handleSearchControlControl(value)));
   }
@@ -73,7 +76,7 @@ export class PokemonListComponent implements OnInit, OnDestroy {
     })
   }
 
-  loadPokemon(options: undefined | { pageSize : number } = undefined) {
+  loadPokemon(options: undefined | { pageSize : number, pageNo : number } = undefined) {
     this.pokemonListFiltered = undefined;
 
     this.pokedexService.getAll(options).pipe(catchError(error => {
